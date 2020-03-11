@@ -6,14 +6,21 @@ export default {
         <div class="card rounded" @click="navToUserHome()">
             <div class="card-body text-center">
                 <img :src="'images/user/' + liveuser.avatar + '.jpg'" class="rounded-circle img-fluid">
-                <p>{{ liveuser.username }}</p>
+                <p>{{ liveuser.uname }}</p>
             </div>
         </div>
     </div>`,
 
+    created: function() {
+        if (this.liveuser.avatar === null || this.liveuser.avatar === "null") {
+            this.liveuser.avatar = "temp_avatar";
+        }
+    },
+
     methods: {
         navToUserHome() {
             debugger;
+            this.$router.push({ name: "home", params: { currentuser: this.liveuser }});
         }
     }
 
