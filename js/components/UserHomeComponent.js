@@ -3,8 +3,8 @@ export default {
 
     template: `
     <div class="container">
-        <pre>{{ this.currentuser }}</pre>
-        <h1>Hello, {{ this.currentuser.uname }}</h1>
+        <pre>{{ currentuser }}</pre>
+        <h1>Hello, {{ currentuser.username }}</h1>
     </div>
     `
 }

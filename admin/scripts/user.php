@@ -1,7 +1,7 @@
 <?php 
 function createUser($fname, $username, $password, $email){
     $pdo = Database::getInstance()->getConnection();
-    
+
     //TODO: finish the below so that it can run a SQL query
     // to create a new user with provided data
     $create_user_query = 'INSERT INTO tbl_user(user_fname, user_name, user_pass, user_email, user_ip)';
@@ -65,7 +65,7 @@ function getAllUsers(){
             $currentuser['admin'] = $user['user_admin'];
             $currentuser['avatar'] = $user['user_avatar'];
             $currentuser['permissions'] = $user['user_permissions'];
-            $currentuser['uname'] = $user['user_name'];
+            $currentuser['username'] = $user['user_name'];
 
             $users[] = $currentuser;
         }

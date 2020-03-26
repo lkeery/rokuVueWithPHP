@@ -10,7 +10,7 @@ import UserHomeComponent from './components/UserHomeComponent.js';
       { path: '/', redirect: { name: "login" } },
       { path: '/login', name: "login", component: LoginComponent },
       { path: '/users', name: 'users', component: AllUsersComponent },
-      { path: '/home', name: 'home', component: UserHomeComponent, props: true },
+      { path: '/userhome', name: 'home', component: UserHomeComponent, props: true },
     ]
   });
 
@@ -33,6 +33,25 @@ import UserHomeComponent from './components/UserHomeComponent.js';
         // push user back to login page
         this.$router.push({ path: "/login" });
         this.authenticated = false;
+
+        if(localStorage.getItem("cachedUser")) {
+          localStorage.removeItem("cachedUser");
+        }
+      }
+    },
+
+    created: function() {
+      // check for user in localstorage
+      // if logged in before, it should be here until manually removed with logout
+
+      if (localStorage.getItem("cachedUser")) {
+        let user = JSON.parse(localStorage.getItem("cachedUser"));
+
+        this.authenticated = true;
+
+        this.$router.push({ name: "home", params: { currentuser: user }});
+      } else {
+        this.$router.push({ name: "login" });
       }
     },
 
